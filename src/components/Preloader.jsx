@@ -24,7 +24,7 @@ const Preloader = ({ onComplete }) => {
     }
   };
 
-  // Animasi cursor
+  // Cursor Animation
   const cursorVariants = {
     blink: {
       opacity: [0, 1, 0],
