@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Preloader from './components/Preloader';
+import ComingSoon from './components/ComingSoon';
 import './App.css';
 
 function App() {
@@ -8,20 +9,15 @@ function App() {
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        {isLoading ? (
+      <AnimatePresence>
+        {isLoading && (
           <Preloader onComplete={() => setIsLoading(false)} />
-        ) : (
-          <motion.main
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-              <h1>Coming Soon</h1>
-              <h4>Kalo nda malas awikwok</h4>
-          </motion.main>
         )}
       </AnimatePresence>
+
+      {!isLoading && (
+        <ComingSoon />
+      )}
     </>
   );
 }
