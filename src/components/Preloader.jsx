@@ -5,11 +5,11 @@ import './Preloader.css';
 const Preloader = ({ onComplete }) => {
   const [currentPhase, setCurrentPhase] = useState(0);
   const phrases = [
-    "Hi, I'm Gerent",
-    "Welcome to my Website"
+    "Welcome!",
+    "I'm Gerent"
   ];
 
-  // Animasi teks
+  // Text Animation
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -38,7 +38,7 @@ const Preloader = ({ onComplete }) => {
   useEffect(() => {
     const sequence = [
       // Display first text
-      () => new Promise(resolve => setTimeout(resolve, 2500)),
+      () => new Promise(resolve => setTimeout(resolve, 1500)),
       // Change to second text
       () => setCurrentPhase(1),
       // Display second text
