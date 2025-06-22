@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { motion, useInView } from "framer-motion";
 import "./Home.css";
 
 const Home = () => {
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
+  const containerRef = useRef(null);
   const [showScrollBtn, setShowScrollBtn] = useState(false);
+  const isInView = useInView(containerRef, { once: false, amount: 0.5 });
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById("about");
@@ -14,56 +15,62 @@ const Home = () => {
     }
   };
 
+  // Animasi variants
+  const titleVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 10
+      }
+    }
+  };
+
+  const subtitleVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 10,
+        delay: 0.3
+      }
+    }
+  };
+
   useEffect(() => {
-    // Text Animation
-    setTimeout(() => {
-      if (titleRef.current) {
-        titleRef.current.style.opacity = "1";
-        titleRef.current.style.transform = "translateY(0)";
-      }
-    }, 200);
-
-    setTimeout(() => {
-      if (subtitleRef.current) {
-        subtitleRef.current.style.opacity = "1";
-        subtitleRef.current.style.transform = "translateY(0)";
-      }
-    }, 500);
-
     const timer = setTimeout(() => {
       setShowScrollBtn(true);
-    }, 800);
+    }, 1000);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="home-container" id="home">
+    <div className="home-container" id="home" ref={containerRef}>
       <div className="home-content">
-        <h1 
-          ref={titleRef}
+        <motion.h1 
           className="home-title"
-          style={{
-            opacity: 0,
-            transform: "translateY(-50px)",
-            transition: "all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)"
-          }}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={titleVariants}
         >
           HI, I AM GERENT
-        </h1>
-        <h2 
-          ref={subtitleRef}
+        </motion.h1>
+        
+        <motion.h2 
           className="home-subtitle"
-          style={{
-            opacity: 0,
-            transform: "translateY(30px)",
-            transition: "all 0.8s ease-out"
-          }}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={subtitleVariants}
         >
           Software Engineer
-        </h2>
+        </motion.h2>
       </div>
       
       <button 
