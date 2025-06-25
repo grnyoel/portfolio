@@ -1,0 +1,131 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* Base Styles */
+.certificate-section {
+  padding: 5rem 2rem;
+  background: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h5 {
+  color: #64748b;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  color: #0f172a;
+  font-size: 2.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Certificate Grid */
+.certificate-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Certificate Card */
+.certificate-card {
+  background: #f3f3f3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.certificate-card:hover {
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+}
+
+.certificate-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Image Container */
+.certificate-image-container {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.certificate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.certificate-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.certificate-overlay span {
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.certificate-card:hover .certificate-overlay {
+  opacity: 1;
+}
+
+.certificate-card:hover .certificate-image {
+  transform: scale(1.05);
+}
+
+/* Details */
+.certificate-details {
+  padding: 1.5rem;
+}
+
+.certificate-details h3 {
+  color: #0f172a;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.certificate-details .issuer {
+  color: #334155;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.certificate-details .date {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .certificate-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .header h2 {
+    font-size: 2rem;
+  }
+}
